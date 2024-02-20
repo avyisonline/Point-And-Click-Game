@@ -32,6 +32,7 @@ body {
     background-color: #000000;
     top: 10px;
     left: 10px;
+    color: white
 }
 
 #dialogBar {
@@ -41,14 +42,16 @@ body {
 #setMainDialog {
     width: 800px;
     height: 64px;
-    background-color: #FFFFFF;
+    background-color: #111111;
 
 }
 
 #heroAvatar {
-    width: 32px;
-    height: 64px;
+    width: 96px;
+    height: 96px;
     background-color: #ee80ee;
+    bottom: 0px;
+    left: 0px;
 }
 
 #heroSpeech {
@@ -58,9 +61,10 @@ body {
 }
 
 #counterAvatar {
-    width: 32px;
-    height: 64px;
+    width: 96px;
+    height: 96px;
     background-color: #FFFF00;
+    bottom: 0px;
     right: 0px;
 }
 
@@ -71,19 +75,49 @@ body {
 }
 
 #squareTree {
-    width: 96px;
+    width: 64px;
     height: 64px;
-    background-color: #00FFFF;
-    bottom: 128px;
-    left: 500px;
+    background-color: forestgreen;
+    left: 560px;
+    top: 500px;
+    opacity: 1;
+    transition: all 1s ease-in-out;
 }
 
 #hero {
     width: 32px;
     height: 32px;
-    background-color: #00FF00;
-    bottom: 256px;
-    left: 368px;
+
+    transition: all 1s ease-in-out;
+}
+
+#key {
+    width: 32px;
+    height: 32px;
+    background-color: #fffb00;
+    left: 216px;
+    top: 166px;
+    opacity: 1;
+    transition: all 1s ease-in-out;
+
+}
+
+#mushroom {
+    width: 64px;
+    height: 64px;
+    background-color: darkorchid;
+    left: 288px;
+    top: 94px;
+    opacity: 1;
+    transition: all 1s ease-in-out;
+}
+
+#keyDoor {
+    width: 40px;
+    height: 60px;
+    background-color: brown;
+    left: 172px;
+    top: 292px;
 }
 
 #tileMap {}

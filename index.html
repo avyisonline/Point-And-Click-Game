@@ -16,6 +16,8 @@
     <div id="gameWindow">
         <!--INVENTORY BOX-->
         <div id="inventoryBox" class="foreground">
+            <ul id="inventoryList">
+            </ul>
 
         </div>
         <!--DIALOG BAR-->
@@ -39,15 +41,23 @@
         </div>
 
         <!--FOREGROUND ELEMENTS-->
+        <div id="key" class="foreground"></div>
         <div id="squareTree" class="foreground"></div>
+        <div id="mushroom" class="foreground"></div>
+        <div id="keyDoor" class="foreground"></div>
 
         <!--HERO-->
-        <div id="hero" class="character"></div>
+        <div id="hero" class="character">
+            <img src="IMG/animated-character-1-idle.gif" alt="hero" id="heroImage">
+        </div>
 
         <!--BACKGROUND ELEMENTS-->
-        <div id="tileMap" class="background"></div>
+        <div id="tileMap" class="background">
+            <img src="IMG/tilemap1.jpg" alt="tilemap" draggable="false">
+        </div>
 
     </div>
+    <script src="js/main.js"></script>
 </body>
 
 </html>
