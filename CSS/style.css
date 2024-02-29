@@ -32,7 +32,9 @@ body {
     background-color: #000000;
     top: 10px;
     left: 10px;
-    color: white
+    color: white;
+    opacity: 1;
+    transition: all 1s ease-in-out;
 }
 
 #dialogBar {
@@ -41,37 +43,40 @@ body {
 
 #setMainDialog {
     width: 800px;
-    height: 64px;
-    background-color: #111111;
+    height: 32px;
+    background-image: linear-gradient(#808000, #5C4033);
 
 }
 
 #heroAvatar {
-    width: 96px;
-    height: 96px;
-    background-color: #ee80ee;
+    width: 72px;
+    height: 68px;
     bottom: 0px;
     left: 0px;
 }
 
 #heroSpeech {
     width: 300px;
-    background-color: #f1f1f1;
-    bottom: 0px;
+    height: 24px;
+    bottom: 40px;
+    left: 72px;
+    opacity: 0;
 }
 
 #counterAvatar {
-    width: 96px;
-    height: 96px;
-    background-color: #FFFF00;
+    width: 72px;
+    height: 68px;
     bottom: 0px;
     right: 0px;
+    opacity: 0;
 }
 
 #counterSpeech {
     width: 300px;
-    background-color: #f1f1f1;
-    bottom: 0px;
+    height: 24px;
+    bottom: 40px;
+    right: 72px;
+    opacity: 0;
 }
 
 #squareTree {
@@ -87,16 +92,17 @@ body {
 #hero {
     width: 32px;
     height: 32px;
-
+    top: 165px;
+    left: 387px;
     transition: all 1s ease-in-out;
 }
 
 #key {
     width: 32px;
     height: 32px;
-    background-color: #fffb00;
-    left: 216px;
-    top: 166px;
+    /* background-color: #fffb00; */
+    left: 36px;
+    top: 380px;
     opacity: 1;
     transition: all 1s ease-in-out;
 
@@ -105,7 +111,7 @@ body {
 #mushroom {
     width: 64px;
     height: 64px;
-    background-color: darkorchid;
+    /* background-color: darkorchid; */
     left: 288px;
     top: 94px;
     opacity: 1;
@@ -115,9 +121,17 @@ body {
 #keyDoor {
     width: 40px;
     height: 60px;
-    background-color: brown;
+    /* background-color: brown; */
     left: 172px;
     top: 292px;
+}
+
+#statueLady {
+    width: 40px;
+    height: 72px;
+    /* background-color: antiquewhite; */
+    left: 700px;
+    top: 280px;
 }
 
 #tileMap {}
@@ -137,4 +151,13 @@ body {
 .foreground {
     position: absolute;
     z-index: 1000;
+}
+
+.speechBubble {
+    background-color: #f1f1f1;
+    border-radius: 16px;
+    padding: 4px 4px 4px 20px;
+    user-select: none;
+    cursor: default;
+    transition: all 1s ease-in-out;
 }
