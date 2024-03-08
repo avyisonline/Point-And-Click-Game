@@ -33,8 +33,16 @@ body {
     top: 10px;
     left: 10px;
     color: white;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: gold;
     opacity: 1;
     transition: all 1s ease-in-out;
+}
+
+#inventoryList {
+    font-size: 12pt;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #dialogBar {
@@ -100,38 +108,51 @@ body {
 #key {
     width: 32px;
     height: 32px;
-    /* background-color: #fffb00; */
-    left: 36px;
-    top: 380px;
-    opacity: 1;
+    background-color: gray;
+    opacity: 50%;
+    left: 160px;
+    top: 128px;
+    /* opacity: 1; */
     transition: all 1s ease-in-out;
 
 }
 
 #mushroom {
-    width: 64px;
-    height: 64px;
-    /* background-color: darkorchid; */
-    left: 288px;
+    width: 32px;
+    height: 32px;
+    background-color: purple;
+    opacity: 50%;
+    left: 676px;
     top: 94px;
-    opacity: 1;
+    /* opacity: 1; */
     transition: all 1s ease-in-out;
 }
 
 #keyDoor {
-    width: 40px;
-    height: 60px;
-    /* background-color: brown; */
-    left: 172px;
-    top: 292px;
+    width: 36px;
+    height: 36px;
+    background-color: orange;
+    opacity: 50%;
+    left: 382px;
+    top: 0px;
+}
+
+#door2 {
+    height: 32px;
+    width: 32px;
+    left: 384px;
+    top: 512px;
+    background-color: #0022fe;
+    opacity: 50%;
 }
 
 #statueLady {
-    width: 40px;
-    height: 72px;
-    /* background-color: antiquewhite; */
-    left: 700px;
-    top: 280px;
+    width: 32px;
+    height: 32px;
+    background-color: yellow;
+    opacity: 50%;
+    left: 704px;
+    top: 480px;
 }
 
 #tileMap {}

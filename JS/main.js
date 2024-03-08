@@ -29,6 +29,9 @@ const counterAudio = document.getElementById("counterAudio");
 const tree1 = document.getElementById("squareTree");
 const inventoryBox = document.getElementById("inventoryBox");
 
+//Random Shit
+var knightClickCounter = 0;
+
 gameWindow.onclick = function (e) {
     var rect = gameWindow.getBoundingClientRect();
     var x = e.clientX - rect.left;
@@ -48,18 +51,41 @@ gameWindow.onclick = function (e) {
         }
         case "key":
             if (gameState.hasKey == false) {
-                showMessage(heroSpeech, "I found a key, I wonder where that goes...")
+                showMessage(heroSpeech, "Wow! Are you a knight?", heroAudio);
+                setTimeout(function () { counterAvatar.style.opacity = 1, 3000; });
+                setTimeout(showMessage, 3000, counterSpeech, "Hello there, friend!", counterAudio);
+                setTimeout(showMessage, 6000, heroSpeech, "Would you perchance have something for me?", heroAudio);
+                setTimeout(showMessage, 9000, counterSpeech, "Why yes, I have a key for you!", counterAudio);
+                setTimeout(showMessage, 12000, heroSpeech, "Thank you! I'll take that.", heroAudio);
+                setTimeout(showMessage, 15000, counterSpeech, "No problem pal, safe travels!", counterAudio);
+                setTimeout(function () { counterAvatar.style.opacity = 0, 15000; });
                 console.log("here's a key for ya ");
                 document.getElementById("key").remove;
                 changeInventory('key', "add");
                 gameState.hasKey = true;
-            } else {
-                console.log("No keys for you, you only get 1 >:(");
+            } else if (knightClickCounter == 2 || knightClickCounter == 3) {
+                showMessage(counterSpeech, "Come on kid, I'm getting fed up with you.", counterAudio);
+                knightClickCounter += 1;
+            } else if (knightClickCounter == 4 || knightClickCounter == 5) {
+                showMessage(counterSpeech, "Final warning kid, you best be on your way.", counterAudio);
+                knightClickCounter += 1;
+            } else if (knightClickCounter == 6) {
+                showMessage(counterSpeech, "Don't say I didn't warn you...", counterAudio);
+                setTimeout(3000, location.reload());
+            }
+
+            else {
+                showMessage(counterSpeech, "Hey wait a minute..", counterAudio)
+                setTimeout(showMessage, 3000, counterSpeech, "I already gave you a key!", counterAudio);
+                setTimeout(showMessage, 6000, heroSpeech, "Oh yeah, you did..", heroAudio);
+                setTimeout(showMessage, 9000, counterSpeech, "You best be on your way, greedy kid.", counterAudio);
+                knightClickCounter += 1;
             }
             break;
         case "mushroom":
             if (gameState.hasMushroom == false) {
-                showMessage(heroSpeech, "Mushrooms grow down here, I'll take one..")
+                showMessage(heroSpeech, "Ooo, a chest..", heroAudio);
+                setTimeout(showMessage, 3000, heroSpeech, "Oh cool, a mushroom!", heroAudio);
                 document.getElementById("mushroom").remove;
                 changeInventory('mushroom', "add");
                 gameState.hasMushroom = true;
@@ -70,27 +96,26 @@ gameWindow.onclick = function (e) {
         case "keyDoor":
             if (checkItem("key")) {
                 changeInventory('key', "remove");
-                showMessage("Yes! The door is now opened!")
+                showMessage(heroSpeech, "Yes! The door is now opened!", counterAudio);
                 console.log("Nice, you can open the door (in theory)");
             } else if (checkItem("mushroom")) {
                 changeInventory('mushroom', "remove");
-                showMessage(heroSpeech, "Darn, my mushroom doesn't work as a key..")
+                showMessage(heroSpeech, "Darn, my mushroom doesn't work as a key..", heroAudio);
                 console.log("A mushroom does not work as a key, it's mangled beyond belief.");
             } else {
                 console.log("Darn");
             }
             break;
         case "statueLady":
-            showMessage(heroSpeech, "Hey there statue lady!", heroAudio);
-            setTimeout(function () { counterAvatar.style.opacity = 1, 4000; })
-            setTimeout(showMessage, 4000, counterSpeech, "Well hello little hero..", counterAudio);
-            setTimeout(showMessage, 8000, heroSpeech, "Wow! You can speak?", heroAudio);
-            setTimeout(showMessage, 12000, counterSpeech, "Why yes, of course", counterAudio);
-            setTimeout(showMessage, 16000, heroSpeech, "That's incredible!", heroAudio);
-            setTimeout(showMessage, 20000, counterSpeech, "There's a key in the graveyard, maybe get it?", counterAudio);
-            setTimeout(function () { counterAvatar.style.opacity = 0, 24000; })
-            console.log("Hello little one, would you like to know a secret?");
-            console.log("There's a key by one of those gravestones there, go look. Please ^-^");
+            showMessage(counterSpeech, "Hey! Who are you?!", counterAudio);
+            setTimeout(showMessage, 3000, heroSpeech, "I could ask you the same, Mister..?", heroAudio);
+            setTimeout(showMessage, 6000, counterSpeech, "None of your business, scram.", counterAudio);
+            setTimeout(showMessage, 9000, heroSpeech, "Well you're rude..", heroAudio);
+            setTimeout(showMessage, 12000, counterSpeech, "You're damn right, go or I'll fight you!", counterAudio);
+            break;
+        case "door2":
+            showMessage(heroSpeech, "Darn, it won't budge!", heroAudio);
+            setTimeout(showMessage, 3000, heroSpeech, "Maybe I could try another door..", heroAudio);
             break;
         default:
             tree1.style.opacity = 1;
@@ -104,9 +129,8 @@ gameWindow.onclick = function (e) {
  * @param {string} action 
  */
 function changeInventory(itemName, action) {
-
     if (itemName == null || action == null) {
-        console.error("wrong parameters given to change inventory");
+        console.error("Wrong parameters given to changeInventory()");
         return;
     }
 
@@ -125,6 +149,37 @@ function changeInventory(itemName, action) {
     updateInventory(gameState.inventory, inventoryList);
 }
 
+/**
+ * Add or remove item in inventory
+ * @param {string} itemName 
+ * @param {string} action 
+ */
+function changeInventory(itemName, action) {
+    if (itemName == null || action == null) {
+        console.error("Wrong parameters given to changeInventory()");
+        return;
+    }
+
+    switch (action) {
+        case 'add':
+            gameState.inventory.push(itemName);
+            break;
+        case 'remove':
+            gameState.inventory = gameState.inventory.filter(function (newInventory) {
+                return newInventory !== itemName;
+            });
+            document.getElementById("inv-" + itemName).remove();
+            break;
+
+    }
+    updateInventory(gameState.inventory, inventoryList);
+}
+
+/**
+ * This returns string value if it exist within the array
+ * @param {string} itemName 
+ * @returns 
+ */
 function checkItem(itemName) {
     return gameState.inventory.includes(itemName);
 }
@@ -133,33 +188,33 @@ function updateInventory(inventory, inventoryList) {
     inventoryList.innerHTML = '';
     inventory.forEach(function (item) {
         const inventoryItem = document.createElement("li");
-        inventoryItem.id = 'inv' + item;
+        inventoryItem.id = 'inv-' + item;
         inventoryItem.innerText = item;
         inventoryList.appendChild(inventoryItem);
     })
 }
 
 /**
- * It will show dialog
- * @param {getElementById} tragetSound
+ * It will show dialog and trigger sound.
  * @param {getElementById} targetBubble 
- * @param {string} message 
+ * @param {string} message
+ * @param {getElementById} targetSound 
  */
-function showMessage(targetBubble, message, tragetSound) {
-    tragetSound.currentTime = 0;
-    tragetSound.play();
+function showMessage(targetBubble, message, targetSound) {
+    targetSound.currentTime = 0;
+    targetSound.play();
     targetBubble.innerText = message;
     targetBubble.style.opacity = 1;
-    setTimeout(hideMessage, 4000, targetBubble);
+    setTimeout(hideMessage, 4 * sec, targetBubble, targetSound);
 }
 
 /**
- * Hides the message, and pauses the audio
+ * Hides message and pauze the audio
  * @param {getElementById} targetBubble 
- * @param {getElementById} tragetSound 
+ * @param {getElementById} targetSound 
  */
-function hideMessage(targetBubble, tragetSound) {
-    tragetSound.pause();
-    targetBubble.innerText = "..."
+function hideMessage(targetBubble, targetSound) {
+    targetSound.pause();
+    targetBubble.innerText = "...";
     targetBubble.style.opacity = 0;
 }
